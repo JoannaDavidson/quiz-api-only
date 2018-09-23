@@ -24,8 +24,10 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def destroy
-        @user.destroy
-        respond_to :html, :json        
+        if current_user === @user
+            @user.destroy
+            respond_to :html, :json
+        end
     end
 
 private
